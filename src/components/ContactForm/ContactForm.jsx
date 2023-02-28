@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import css from './ContactForm.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectContacts } from 'redux/selectors';
-import { addContact } from 'redux/operations';
+import { selectContacts } from 'redux/contacts/selectors';
+import { addContact } from 'redux/contacts/operations';
+import { toast } from 'react-toastify';
 
 export const ContactForm = () => {
   const [name, setName] = useState('');
@@ -29,7 +30,7 @@ export const ContactForm = () => {
         return name.toLowerCase() === contact.name.toLowerCase();
       })
     ) {
-      alert(`${name} is already in contacts`);
+      toast.warning(`${name} is already in contacts`);
       return;
     }
 
